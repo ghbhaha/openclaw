@@ -502,3 +502,19 @@ export async function setKilocodeApiKey(
     agentDir: resolveAuthAgentDir(agentDir),
   });
 }
+
+export async function setDeepseekWebCookie(
+  options: { cookie: string; bearer?: string; userAgent?: string },
+  agentDir?: string,
+) {
+  const key = JSON.stringify(options);
+  upsertAuthProfile({
+    profileId: "deepseek-web:default",
+    credential: {
+      type: "api_key",
+      provider: "deepseek-web",
+      key,
+    },
+    agentDir: resolveAuthAgentDir(agentDir),
+  });
+}

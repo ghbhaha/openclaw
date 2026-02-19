@@ -49,6 +49,7 @@ export type AuthChoice =
   | "volcengine-api-key"
   | "byteplus-api-key"
   | "qianfan-api-key"
+  | "deepseek-web"
   | "custom-api-key"
   | "skip";
 export type AuthChoiceGroupId =
@@ -78,6 +79,7 @@ export type AuthChoiceGroupId =
   | "xai"
   | "volcengine"
   | "byteplus"
+  | "deepseek-web"
   | "custom";
 export type GatewayAuthChoice = "token" | "password";
 export type ResetScope = "config" | "config+creds+sessions" | "full";
@@ -135,6 +137,7 @@ export type OnboardOptions = {
   volcengineApiKey?: string;
   byteplusApiKey?: string;
   qianfanApiKey?: string;
+  deepseekWebCookie?: string;
   customBaseUrl?: string;
   customApiKey?: string;
   customModelId?: string;

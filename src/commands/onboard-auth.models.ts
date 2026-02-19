@@ -229,3 +229,6 @@ export function buildKilocodeModelDefinition(): ModelDefinitionConfig {
     maxTokens: KILOCODE_DEFAULT_MAX_TOKENS,
   };
 }
+
+export const DEEPSEEK_WEB_DEFAULT_MODEL_ID = "deepseek-chat";
+export const DEEPSEEK_WEB_DEFAULT_MODEL_REF = `deepseek-web/${DEEPSEEK_WEB_DEFAULT_MODEL_ID}`;

@@ -120,3 +120,15 @@ dist/protocol.schema.json
 
 # Synthing
 **/.stfolder/
+
+# Temporary logs and test outputs
+*.log
+lint_output*.txt
+ts_errors*.txt
+test-*.mjs
+solve-wasm.mjs
+verify-final.mjs
+patch-client.mjs
+research-deepseek.mjs
+sha3_wasm_b64.txt
+sha3_wasm_bg.wasm

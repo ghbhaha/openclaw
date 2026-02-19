@@ -185,6 +185,12 @@ const AUTH_CHOICE_GROUP_DEFS: {
     hint: "Any OpenAI or Anthropic compatible endpoint",
     choices: ["custom-api-key"],
   },
+  {
+      value: "deepseek-web",
+      label: "DeepSeek Browser",
+      hint: "Uses cookies (V3/R1 thinking)",
+      choices: ["deepseek-web"],
+  },
 ];
 
 const PROVIDER_AUTH_CHOICE_OPTION_HINTS: Partial<Record<AuthChoice, string>> = {
@@ -296,6 +302,11 @@ const BASE_AUTH_CHOICE_OPTIONS: ReadonlyArray<AuthChoiceOption> = [
     value: "minimax-api-lightning",
     label: "MiniMax M2.5 Lightning",
     hint: "Faster, higher output cost",
+  },
+  {
+    value: "deepseek-web",
+    label: "DeepSeek Browser (Cookie auth)",
+    hint: "Access DeepSeek V3/R1 via logged-in session",
   },
   { value: "custom-api-key", label: "Custom Provider" },
 ];

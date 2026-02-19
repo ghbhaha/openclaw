@@ -6,13 +6,10 @@ import { openExternalUrlSafe } from "../open-external-url.ts";
 import { detectTextDirection } from "../text-direction.ts";
 import type { MessageGroup } from "../types/chat-types.ts";
 import { renderCopyAsMarkdownButton } from "./copy-as-markdown.ts";
-import {
-  extractTextCached,
-  extractThinkingCached,
-  formatReasoningMarkdown,
-} from "./message-extract.ts";
+import { extractTextCached, extractThinkingCached } from "./message-extract.ts";
 import { isToolResultMessage, normalizeRoleForGrouping } from "./message-normalizer.ts";
 import { extractToolCards, renderToolCardSidebar } from "./tool-cards.ts";
+import "../components/chat-thinking.ts";
 
 type ImageBlock = {
   url: string;
@@ -244,7 +241,6 @@ function renderGroupedMessage(
   const extractedThinking =
     opts.showReasoning && role === "assistant" ? extractThinkingCached(message) : null;
   const markdownBase = extractedText?.trim() ? extractedText : null;
-  const reasoningMarkdown = extractedThinking ? formatReasoningMarkdown(extractedThinking) : null;
   const markdown = markdownBase;
   const canCopyMarkdown = role === "assistant" && Boolean(markdown?.trim());
 
@@ -270,10 +266,8 @@ function renderGroupedMessage(
       ${canCopyMarkdown ? renderCopyAsMarkdownButton(markdown!) : nothing}
       ${renderMessageImages(images)}
       ${
-        reasoningMarkdown
-          ? html`<div class="chat-thinking">${unsafeHTML(
-              toSanitizedMarkdownHtml(reasoningMarkdown),
-            )}</div>`
+        extractedThinking && opts.showReasoning
+          ? html`<chat-thinking .content=${extractedThinking}></chat-thinking>`
           : nothing
       }
       ${
