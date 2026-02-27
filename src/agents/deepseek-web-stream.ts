@@ -47,9 +47,11 @@ export function createDeepseekWebStreamFn(cookieOrJson: string): StreamFn {
       try {
         await client.init();
 
-        const sessionKey = (context as unknown as { sessionId?: string }).sessionId || "default";
+        const sessionKey = (options as unknown as { sessionId?: string }).sessionId || "default";
         let dsSessionId = sessionMap.get(sessionKey);
         let parentId = parentMessageMap.get(sessionKey);
+
+        console.log(`[DeepseekWebStream] SessionKey: ${sessionKey}`);
 
         if (!dsSessionId) {
           const session = await client.createChatSession();
